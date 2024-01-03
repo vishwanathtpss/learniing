@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Mozilla is cool</h1>
+    <img
+      src="firefox.png"
+      alt="The Firefox logo: a flaming fox surrounding the Earth."
+      width="700"
+    />
+
+    <button>Change user</button>
+    <script>
+      // Image switcher code
+
+      let myImage = document.querySelector("img");
+      let img = ["firefox.png", "abc.png", "demo.png"];
+      console.log(img);
+      myImage.onclick = function () {
+        let mySrc = myImage.getAttribute("src");
+
+        if (mySrc === "firefox.png") {
+          myImage.setAttribute("src", "firefox2.png");
+        } else {
+          myImage.setAttribute("src", "demo.png");
+          if (mySrc === "demo.png") {
+            myImage.setAttribute("src", "abc.png");
+          }
+        }
+      };
+      // Personalized welcome message code
+
+      let myButton = document.querySelector("button");
+      let myHeading = document.querySelector("h1");
+
+      function setUserName() {
+        let myName = prompt("Please enter your name.");
+        if (!myName) {
+          setUserName();
+        } else {
+          localStorage.setItem("name", myName);
+          myHeading.innerHTML = "WELCOME, " + myName;
+        }
+      }
+
+      if (!localStorage.getItem("name")) {
+        setUserName();
+      } else {
+        let storedName = localStorage.getItem("name");
+        myHeading.innerHTML = "WOW, " + storedName;
+      }
+
+      myButton.onclick = function () {
+        setUserName();
+      };
+    </script>
+  </body>
+</html>
